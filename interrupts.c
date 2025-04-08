@@ -20,9 +20,9 @@ EXTI program:
 void EXTI_IRQHandler_1()
 {
 	EXTI->PR |= (1 << 1); //verifica la interrupccion
-	motor1_secuencia();
+	motor1_sec1();
 	for (volatile int i = 0; i < 100; i++);
-	motor1_secuencia2();
+	motor1_sec2();
 	
 	
 	GPIOC->ODR ^= (1 << 13); 
@@ -45,9 +45,9 @@ void ext_interrupt_2(void){			//PA2
 void EXTI_IRQHandler_2()
 {
 	EXTI->PR |= (1 << 2); //verifica la interrupccion 
-	motor2_secuencia1();
+	motor2_sec1();
 	for (volatile int i = 0; i < 100; i++);
-	motor2_secuencia2();
+	motor2_sec2();
 	
 	
 	GPIOC->ODR ^= (1 << 13); 

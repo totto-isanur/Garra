@@ -83,11 +83,6 @@ TIM2 -> CCMR1 |= (1 << 6) | (1<<5);
 TIM2 -> CCER |= 1 << 0; // salida por el canal 1  del timer 2
 TIM2 ->  CR1 |= 1 << 0;
 
-
-
-
-
-
 }
 
 

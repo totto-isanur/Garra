@@ -3,10 +3,10 @@ Memory and bus architecture (p.46)
 
 */
 
-//user defined libs
+
 #include "gpio.h"
-#include "leds.h"
-#include "timers.h"
+// #include "leds.h"
+// #include "timers.h"
 #include "garra.h"
 #include "interrupts.h"
 
