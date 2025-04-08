@@ -409,6 +409,11 @@
               <FileType>1</FileType>
               <FilePath>.\interrupts.c</FilePath>
             </File>
+            <File>
+              <FileName>garra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\garra.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -433,6 +438,11 @@
               <FileName>leds.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\leds.h</FilePath>
+            </File>
+            <File>
+              <FileName>garra.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\garra.h</FilePath>
             </File>
           </Files>
         </Group>
