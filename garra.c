@@ -1,55 +1,103 @@
 
-#include "stm32f10x.h"
+#include "stm32f1xx.h"
 #include "timers.h"
 #include "garra.h"
 
-void sec1(){
-
-timer2_pwm();
-timer3_pwm();
-
-/*
-Frecuencia determinada por ARR
-CCRX -> SALIDA = (TIEMPO DE TRABAJO * (ARR + 1))
-
-*/
-//servo 1
-TIM2 -> CCR1 = 1800; //0�
-for ( int i =64285 ; i > 1; i--);
-TIM2 -> CCR1 = 3857; //90�
-for ( int i = 0; i < 64285; i++);
-TIM2 -> CCR1 = 5914; // 180�
-	
-//servo 2
-for ( int i = 64285; i > 1; i--);
-
-TIM3 -> CCR1 = 1800;
-for ( int i = 0; i < 64285; i++);
-TIM3 -> CCR1 = 3857;
-for ( int i = 64285; i > 1; i--);
-TIM3 -> CCR1 = 5914;
+void motor1_secuencia(){
+        timer2_pwm();
+                for (volatile int i = 0;i < 100;i++)
+        {
+        TIM2->CCR2 = 1800;
+        for (int j = 0;j < 75453;j++);
         }
-
-				
-void sec2 () {
-       
-timer2_pwm();
-timer3_pwm();
-
-//servo 1
-TIM2 -> CCR1 = 5914; // 180
-for ( int i =64285 ; i > 1; i--);
-TIM2 -> CCR1 = 3857; //90
-for ( int i = 0; i < 64285; i++);
-TIM2 -> CCR1 = 1800; // 0
-	
-//servo 2
-for ( int i = 64285; i > 1; i--);
-TIM3 -> CCR1 = 5914;
-for ( int i = 0; i < 64285; i++);
-TIM3 -> CCR1 = 3857;
-for ( int i = 64285; i > 1; i--);
-TIM3 -> CCR1 = 1800;   
+        
+        for (volatile int i = 100;i > 0;i--)
+                                {
+        TIM2->CCR2 = 3857;
+        for (int j = 0;j < 75453;j++);
         }
+                                
+        for (volatile int i = 0;i < 100;i++)
+        {
+        TIM2->CCR2 = 5914;
+        for (int j = 0;j < 75453;j++);
+                }
+        }
+        
+        
+        
+        //180°->90°->0°
+        void motor1_secuencia2(){
+                timer2_pwm();
+                for (volatile int i = 0;i < 100;i++)
+                {
+                TIM2->CCR2 = 5914;
+                for (int j = 0;j < 75453;j++);
+                }
 
+                for (volatile int i = 100;i > 0;i--)
+                {
+                TIM2->CCR2 = 3857;
+                for (int j = 0;j < 75453;j++);
+                }
 
+                for (volatile int i = 0;i < 100;i++)
+                {
+                TIM2->CCR2 = 1800;
+                for (int j = 0;j < 75453;j++);
+                        }
+                }
+        
+        
+        
+                
+                
+        //0°->90°->180°
+                void motor2_secuencia1(){
+                        
+        timer3_pwm();        //SEGUNDO MOTOR TIMER 3
+        
+        for (volatile int i = 0;i < 100;i++)
+                {
+                TIM3->CCR2 = 1800;
+                for (int j = 0;j < 65453;j++);
+                }
+
+                for (volatile int i = 100;i > 0;i--)
+                {
+                TIM3->CCR2 = 3857;
+                for (int j = 0;j < 65453;j++);
+                        }
+                        
+                for (volatile int i = 0;i < 100;i++)
+                        {
+                TIM3->CCR2 = 5914;
+                for (int j = 0;j < 65453;j++);
+                                }
+                }
+        
+        
+                
+                //180°->90°->0°
+                void motor2_secuencia2(){
+                        timer3_pwm();
+                for (volatile int i = 0;i < 100;i++)
+                        {
+                        TIM3->CCR2 = 5914;
+                        for (int j = 0;j < 65453;j++);
+                        }
+        
+                for (volatile int i = 100;i > 0;i--)
+                {
+                TIM3->CCR2 = 3857;
+                for (int j = 0;j < 65453;j++);
+                }
+                
+                for (volatile int i = 0;i < 100;i++)
+                {
+                TIM3->CCR2 = 1800;
+                for (int j = 0;j < 65453;j++);
+                }
+                        
+                }
+                
