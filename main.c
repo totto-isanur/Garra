@@ -7,20 +7,18 @@ Memory and bus architecture (p.46)
 #include "gpio.h"
 #include "leds.h"
 #include "timers.h"
-#include "garra.h"
 
 int main(void){
 	init_gpio();
-	led_on_off(50);
+	//led_on_off(50);
 	//led_onoff_timer2(1000);
 	
 	
 	/*Using timers
 	***************/
-	//timer2_output_compare();
-	//timer2_pwm();
+	timer2_ch1_oc();
+	timer3_ch1_pwm();
 	while(1){
-	sec1();
-  sec2();
+		
 	}
 }

@@ -16,31 +16,29 @@ void delay_timer2()
 	TIM2->CR1 = ~(1 << 0); //counter disable 
 }
 
-void timer2_output_compare(){
+void timer2_ch1_oc(void){
 	
-	RCC->APB1ENR|= 1 << 0; //enable TIM2 clk
+	RCC->APB1ENR|= 1 << 0; //TIM2 clk enabled
 	/* 
 	Tout=[(ARR+1)(PSC+1)]/Fclk
 	or ARR = {[(Tout)(Fclk)]/(PSC+1)}-1
 	Tout: is desired pulse width
-	PSC: Prescaller (can be a supposed value, but must be ARR <= 65,535)
+	PSC: Prescaler (can be a supposed value, but ARR <= 65,535)
 	Fclk: Clock frequency (72 Mhz if internal clock used)
 	Example for 1ms pulse width and PSC=1
 		ARR = [(1ms)(72Mhz)/(1+1)]-1 = 35,999
 	*/
-	TIM2->PSC=1;
-	TIM2->ARR=35999;
-	//OC1M in Toggle on Match Mode
-	TIM2->CCMR1 |= (1 << 5) | (1 << 4);
-	//capture/compare enable register
-	TIM2->CCER |= (1 << 0);
-	//enable timer
-	TIM2->CR1 |= (1 << 0);
+	TIM2->PSC=1;			//prescaler value
+	TIM2->ARR=35999;	//Value to compare
+	TIM2->CCMR1 &= ~(1 << 6);	//OC1M in Toggle on Match Mode ch1
+	TIM2->CCMR1 |= (1 << 5) | (1 << 4);	
+	TIM2->CCER |= (1 << 0);		//ch1 output enable
+	TIM2->CR1 |= (1 << 0);		//counter enabled
 }
 
-void timer2_pwm(){
-	
-	RCC->APB1ENR |= (1 << 0);	//enable TIM2 clk
+void timer3_ch1_pwm(){
+
+	RCC->APB1ENR |= (1 << 1);	//TIM3 clk enabled
 	/* 
 	DutyCycle = [CCR/(ARR+1]x100%
 	Fpwm = Fclk/[(ARR + 1)(PSC+1)]
@@ -51,12 +49,13 @@ void timer2_pwm(){
 	CCR = DutyCycle(ARR+1)
 	CCR=0.05x(65453+1)=3,272.7
 	*/
-	TIM2->PSC=27;
-	TIM2->ARR=64284;
-	TIM2->CCR2 = 3273;
-	TIM2->CCMR1 |= (1 << 4) | (1 << 5); //select pwm mode ch2
-	TIM2->CCER	|=	(1 << 0);	//enable ch2
-	TIM2->CR1		|=	(1 << 0); //enable timer
+	TIM3->PSC=21;			//prescaler value
+	TIM3->ARR=65453;	//Value to compare
+	TIM3->CCR1 = 3273;	//Duty cicle 
+	TIM3->CCMR1 |= (1 << 6) | (1 << 5); //pwm mode1 ch1
+	TIM3->CCMR1 &= ~(1 << 4);
+	TIM3->CCER	|=	(1 << 0);	//ch1 output enable
+	TIM3->CR1		|=	(1 << 0); //counter enabled
 	/*
 	while(1)
 	{
@@ -74,14 +73,3 @@ void timer2_pwm(){
 	}
 	*/
 }
-void timer3_pwm (){
-	RCC->APB1ENR |= (1 << 1);	
-	TIM3->PSC=27;
-	TIM3->ARR=64284;
-	TIM3->CCR2 = 3273;
-	TIM3->CCMR1 |= (1 << 4) | (1 << 5); 
-	TIM3->CCER	|=	(1 << 0);	
-	TIM3->CR1		|=	(1 << 0); 
-
-}
-	

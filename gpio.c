@@ -1,37 +1,44 @@
 #include <stm32f10x.h>
-
+/*
+GPIO program:
+- Enable the clock signal for the GPIO.
+- Configure the Alternate Function to use a GPIO (usually standard after reset).
+- Configure the GPIO pins as input or output.
+- Set remaining parameters like speed, pull-up/down.
+- Enable the GPIO.
+- Read from or write to the GPIO.
+*/
 void init_gpio(void){
-	//init portA
-	RCC->APB2ENR |= 1 << 2; //enable clk
-	/***********output compare***************/
-	//PA0 mode 2MHz.
-	GPIOA->CRL |= (1 << 1);
+	/******* Port A *******************/
+	RCC->APB2ENR |= 1 << 2; //port A clk enable
+	
+	//PA0 config for TIMER2
+	GPIOA->CRL |= (1 << 1);	//mode output 2MHz.
 	GPIOA->CRL &= ~(1 << 0);
-	//PA0 alternate function pushpull
-	GPIOA->CRL |= (1 << 3);
+	GPIOA->CRL |= (1 << 3);	//alternate function output push-pull
 	GPIOA->CRL &= ~(1 << 2);
-
-	/***********pwm***************/
-	//PA1 mode 2MHz.
-	GPIOA->CRL |= (1 << 5);
-	GPIOA->CRL &= ~(1 << 4);
-	//PA1 alternate function pushpull
-	GPIOA->CRL |= (1 << 7);
+	AFIO->MAPR &= ~((1 << 9)|(1 << 8)); 	//TIMER2 no remap
+	
+	//PA1 config for EXTI1
+	GPIOA->CRL &= ~((1 << 5)|(1 << 4));	//input mode
+	GPIOA->CRL |= (1 << 7);	//alternate function input with pull-up
 	GPIOA->CRL &= ~(1 << 6);
-
-	//alternate function remap
-	AFIO->MAPR &= ~((1 << 9)|(1 << 8));
 	
+	//PA6 config for TIMER3
+	GPIOA->CRL |= (1 << 25);	//mode output 2MHz.
+	GPIOA->CRL &= ~(1 << 24);
+	GPIOA->CRL |= (1 << 27);//alternate function output push-pull
+	GPIOA->CRL &= ~(1 << 26);
+	AFIO->MAPR &= ~((1 << 10)|(1 << 11)); //TIMER3 no remap
 	
-	//init portC
-	RCC->APB2ENR |= (1 << 4);
-	//PC13 as Output push/pull
-	GPIOC->CRH &= ~((1 << 23)|(1 << 22)|(1 << 20));
-	GPIOC->CRH |= (1 << 21);
+	/**********************************/
 	
-	// Timer 3
-	GPIOA -> CRL |= (1 << 27);
-	GPIOA -> CRL &= ~(1 << 26);
-	GPIOA -> CRL |= (1 << 25); 
-	GPIOA -> CRL &=  ~( 1 << 24);
+	/******* Port C *******************/
+	RCC->APB2ENR |= (1 << 4);	//port A clk enable
+	
+	//PC13 config
+	GPIOC->CRH |= (1 << 21);	//mode output 2MHz.
+	GPIOC->CRH &= ~(1 << 20);
+	GPIOC->CRH &= ~((1 << 23)|(1 << 22));	//general purpose output push-pull
+	/**********************************/
 }
