@@ -5,4 +5,6 @@
 	void timer3_ch1_pwm(void);
 	void timer2_pwm(void);
 	void timer3_pwm(void);
+	void stoptim3(void);
+	void stoptim2(void);
 #endif

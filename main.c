@@ -6,7 +6,7 @@ Memory and bus architecture (p.46)
 
 #include "gpio.h"
 // #include "leds.h"
-// #include "timers.h"
+#include "timers.h"
 #include "garra.h"
 #include "interrupts.h"
 
@@ -22,9 +22,9 @@ int main(void){
 	
 	/*Using timers
 	***************/
-	/*timer2_ch1_oc();
+	timer2_ch1_oc();
 	timer3_ch1_pwm();
-	*/
+	
 	while(1){
 		
 	}

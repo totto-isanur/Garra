@@ -97,3 +97,9 @@ TIM3 -> CR1 |= (1<<0);
 
 
 }
+void stoptim3(){
+		TIM3->CR1		|=	~(1 << 0);
+	}
+	void stoptim2(){
+		TIM2->CR1 |= ~(1 << 0);
+	}
