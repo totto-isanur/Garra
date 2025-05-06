@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>sdk</TargetName>
+      <TargetName>Target_1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>6220000::V6.22::ARMCLANG</pCCUsed>
@@ -49,10 +49,10 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>sdk2025</OutputName>
+          <OutputName>i2c</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
+          <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -110,13 +110,13 @@
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments> </SimDllArguments>
-          <SimDlgDll>DARMSTM.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pSTM32F103C8</SimDlgDllArguments>
+          <SimDllArguments> -REMAP</SimDllArguments>
+          <SimDlgDll>DCM.DLL</SimDlgDll>
+          <SimDlgDllArguments>-pCM3</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
           <TargetDllArguments></TargetDllArguments>
-          <TargetDlgDll>TARMSTM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pSTM32F103C8</TargetDlgDllArguments>
+          <TargetDlgDll>TCM.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pCM3</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4096</DriverSelection>
+            <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -260,17 +260,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -280,7 +280,7 @@
                 <Size>0x10000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT5>
@@ -382,97 +382,12 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source</GroupName>
+          <GroupName>Source Group 1</GroupName>
           <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>leds.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\leds.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\timers.c</FilePath>
-            </File>
-            <File>
-              <FileName>interrupts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\interrupts.c</FilePath>
-            </File>
-            <File>
-              <FileName>garra.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\garra.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\usart.c</FilePath>
-            </File>
             <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>gp_drive.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\Lenovo\OneDrive\Desktop\YT\STM32F1-Tutorial\033-STM32F1_USART_LIBRARY_INTERRUPT_STRATEGY\gp_drive.c</FilePath>
-            </File>
-            <File>
-              <FileName>systick_time.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\Lenovo\OneDrive\Desktop\YT\STM32F1-Tutorial\033-STM32F1_USART_LIBRARY_INTERRUPT_STRATEGY\systick_time.c</FilePath>
-            </File>
-            <File>
-              <FileName>uart_drive.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\Lenovo\OneDrive\Desktop\YT\STM32F1-Tutorial\033-STM32F1_USART_LIBRARY_INTERRUPT_STRATEGY\uart_drive.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>User library</GroupName>
-          <Files>
-            <File>
-              <FileName>interrupts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\interrupts.h</FilePath>
-            </File>
-            <File>
-              <FileName>timers.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\timers.h</FilePath>
-            </File>
-            <File>
-              <FileName>gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\gpio.h</FilePath>
-            </File>
-            <File>
-              <FileName>leds.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\leds.h</FilePath>
-            </File>
-            <File>
-              <FileName>garra.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\garra.h</FilePath>
-            </File>
-            <File>
-              <FileName>usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\usart.h</FilePath>
             </File>
             <File>
               <FileName>i2c.h</FileName>
@@ -480,44 +395,9 @@
               <FilePath>.\i2c.h</FilePath>
             </File>
             <File>
-              <FileName>gp_drive.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>C:\Users\Lenovo\OneDrive\Desktop\YT\STM32F1-Tutorial\033-STM32F1_USART_LIBRARY_INTERRUPT_STRATEGY\gp_drive.h</FilePath>
-            </File>
-            <File>
-              <FileName>systick_time.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>C:\Users\Lenovo\OneDrive\Desktop\YT\STM32F1-Tutorial\033-STM32F1_USART_LIBRARY_INTERRUPT_STRATEGY\systick_time.h</FilePath>
-            </File>
-            <File>
-              <FileName>uart_drive.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>C:\Users\Lenovo\OneDrive\Desktop\YT\STM32F1-Tutorial\033-STM32F1_USART_LIBRARY_INTERRUPT_STRATEGY\uart_drive.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>system library</GroupName>
-          <Files>
-            <File>
-              <FileName>systickdelay.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\systickdelay.c</FilePath>
-            </File>
-            <File>
-              <FileName>systickdelay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\systickdelay.h</FilePath>
-            </File>
-            <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\delay.h</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -537,13 +417,13 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="6.1.0" condition="ARMv6_7_8-M Device">
         <package name="CMSIS" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="6.1.0"/>
         <targetInfos>
-          <targetInfo name="sdk"/>
+          <targetInfo name="Target_1"/>
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS">
         <package name="STM32F1xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.4.1"/>
         <targetInfos>
-          <targetInfo name="sdk"/>
+          <targetInfo name="Target_1"/>
         </targetInfos>
       </component>
     </components>
@@ -553,7 +433,7 @@
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS"/>
         <package name="STM32F1xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.4.1"/>
         <targetInfos>
-          <targetInfo name="sdk"/>
+          <targetInfo name="Target_1"/>
         </targetInfos>
       </file>
       <file attr="config" category="source" condition="STM32F1xx MD ARMCC" name="Device\Source\ARM\startup_stm32f10x_md.s" version="1.0.1">
@@ -561,7 +441,7 @@
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS"/>
         <package name="STM32F1xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.4.1"/>
         <targetInfos>
-          <targetInfo name="sdk"/>
+          <targetInfo name="Target_1"/>
         </targetInfos>
       </file>
       <file attr="config" category="source" name="Device\StdPeriph_Driver\templates\stm32f10x_conf.h" version="3.6.0">
@@ -575,7 +455,7 @@
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS"/>
         <package name="STM32F1xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.4.1"/>
         <targetInfos>
-          <targetInfo name="sdk"/>
+          <targetInfo name="Target_1"/>
         </targetInfos>
       </file>
     </files>

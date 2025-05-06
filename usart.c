@@ -13,7 +13,7 @@ and wait for trnasmission to complete.
 
 
 #include <stm32f10x.h>
-
+#include "delay.h"
 
 void usart1_sendbyte(uint16_t data){
 	USART1->DR = data;
@@ -57,4 +57,18 @@ void usart_polling(){
 
 
 void usart_w_interrupt(){
+	USART1->CR1 |= (1 << 2 | 1 << 3 | 1 << 13); //enable rx,tx and USART
+	/* Example Baud rate 9600
+	BRR = fpclk/bayd rate = 72,000,000/9600 = 7,500 */
+	USART1->BRR = 7500; //set baudrate
+	//USART1->CR1 |= (1 << 7);	//TXE enable interrupt
+	NVIC_EnableIRQ(USART1_IRQn);//enable global interrupts
 }
+/*
+void USART1_IRQHandler(){
+	if(USART1->CR1 & USART1->SR & USART_SR_TXE) {
+        uint8_t c = 'A';
+        USART1->CR1 &= ~USART_CR1_TXEIE;
+				USART1->DR = c;
+	}
+}*/
